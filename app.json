@@ -1,0 +1,7 @@
+{
+    "name": "sike-conference",
+    "description": "Sike Conference App",
+    "repository": "https://github.com/ivanovevgeny/sike-conference",
+    "logo": "http://sike.ru/wp-content/themes/sike/img/logo1.png",
+    "keywords": ["sike", "pwa", "ionic"]
+}
