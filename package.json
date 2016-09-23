@@ -1,10 +1,10 @@
 {
-  "name": "ionic-conference-app",
-  "description": "Ionic Conference App",
+  "name": "sike-conference",
+  "description": "Sike Conference App",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/driftyco/ionic-conference-app.git"
+    "url": "https://github.com/ivanovevgeny/sike-conference.git"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
