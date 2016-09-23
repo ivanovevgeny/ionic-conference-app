@@ -2,15 +2,15 @@
 
   "schedule": [
     {
-      "date": "2047-05-17",
+      "date": "2016-11-15",
       "groups": [
         {
-          "time": "8:00 am",
+          "time": "10:00 am",
           "sessions": [
             {
               "name": "Breakfast",
-              "timeStart": "8:00 am",
-              "timeEnd": "9:00 am",
+              "timeStart": "09:30 am",
+              "timeEnd": "10:00 am",
               "location": "Main hallway",
               "tracks": ["Food"]
             }
