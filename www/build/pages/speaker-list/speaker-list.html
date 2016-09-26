@@ -3,7 +3,7 @@
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Speakers</ion-title>
+    <ion-title>Спикеры</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -28,12 +28,12 @@
           <h3>{{session.name}}</h3>
         </button>
         <button ion-item (click)="goToSpeakerDetail(speaker)">
-          <h3>About {{speaker.name}}</h3>
+          <h3>О спикере</h3>
         </button>
       </ion-list>
     </ion-card-content>
 
-    <ion-item>
+    <!-- <ion-item>
       <button (click)="goToSpeakerTwitter(speaker)" clear item-left>
         <ion-icon name="logo-twitter"></ion-icon>
         Tweet
@@ -42,7 +42,7 @@
         <ion-icon name="share"></ion-icon>
         Share
       </button>
-    </ion-item>
+    </ion-item> -->
 
   </ion-card>
 </ion-content>

@@ -30,18 +30,18 @@ class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageObj[] = [
-    { title: 'Schedule', component: TabsPage, icon: 'calendar' },
-    { title: 'Speakers', component: TabsPage, index: 1, icon: 'contacts' },
-    { title: 'Map', component: TabsPage, index: 2, icon: 'map' },
-    { title: 'About', component: TabsPage, index: 3, icon: 'information-circle' },
+    { title: 'Расписание', component: TabsPage, icon: 'calendar' },
+    { title: 'Спикеры', component: TabsPage, index: 1, icon: 'contacts' },
+    { title: 'Карта', component: TabsPage, index: 2, icon: 'map' },
+    { title: 'Информация', component: TabsPage, index: 3, icon: 'information-circle' },
   ];
   loggedInPages: PageObj[] = [
-    { title: 'Account', component: AccountPage, icon: 'person' },
-    { title: 'Logout', component: TabsPage, icon: 'log-out' }
+    { title: 'Аккаунт', component: AccountPage, icon: 'person' },
+    { title: 'Выйти', component: TabsPage, icon: 'log-out' }
   ];
   loggedOutPages: PageObj[] = [
-    { title: 'Login', component: LoginPage, icon: 'log-in' },
-    { title: 'Signup', component: SignupPage, icon: 'person-add' }
+    { title: 'Вход', component: LoginPage, icon: 'log-in' },
+    { title: 'Регистрация', component: SignupPage, icon: 'person-add' }
   ];
   rootPage: any = TutorialPage;
 
@@ -118,4 +118,6 @@ class ConferenceApp {
 // See the theming docs for the default values:
 // http://ionicframework.com/docs/v2/theming/platform-specific-styles/
 
-ionicBootstrap(ConferenceApp, [ConferenceData, UserData], { });
+ionicBootstrap(ConferenceApp, [ConferenceData, UserData], {
+  backButtonText: 'Назад'
+});

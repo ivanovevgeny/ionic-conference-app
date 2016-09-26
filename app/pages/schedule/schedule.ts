@@ -22,8 +22,8 @@ export class SchedulePage {
   queryText = '';
   segment = 'all';
   excludeTracks = [];
-  shownSessions = [];
-  groups = [];
+  shownSessions = 0;
+  sessions = [];
 
   constructor(
     public alertCtrl: AlertController,
@@ -37,7 +37,7 @@ export class SchedulePage {
   }
 
   ionViewDidEnter() {
-    this.app.setTitle('Schedule');
+    this.app.setTitle('Расписание');
   }
 
   ngAfterViewInit() {
@@ -48,9 +48,9 @@ export class SchedulePage {
     // Close any open sliding items when the schedule updates
     this.scheduleList && this.scheduleList.closeSlidingItems();
 
-    this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).then(data => {
+    this.confData.getTimeline(this.queryText, this.excludeTracks, this.segment).then(data => {
       this.shownSessions = data.shownSessions;
-      this.groups = data.groups;
+      this.sessions = data.sessions;
     });
   }
 
@@ -78,14 +78,14 @@ export class SchedulePage {
     if (this.user.hasFavorite(sessionData.name)) {
       // woops, they already favorited it! What shall we do!?
       // prompt them to remove it
-      this.removeFavorite(slidingItem, sessionData, 'Favorite already added');
+      this.removeFavorite(slidingItem, sessionData, 'Уже добавлено в избранное');
     } else {
       // remember this session as a user favorite
       this.user.addFavorite(sessionData.name);
 
       // create an alert instance
       let alert = this.alertCtrl.create({
-        title: 'Favorite Added',
+        title: 'Добавлено в избранное',
         buttons: [{
           text: 'OK',
           handler: () => {
@@ -103,10 +103,10 @@ export class SchedulePage {
   removeFavorite(slidingItem: ItemSliding, sessionData, title) {
     let alert = this.alertCtrl.create({
       title: title,
-      message: 'Would you like to remove this session from your favorites?',
+      message: 'Удалить из избранного?',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Отмена',
           handler: () => {
             // they clicked the cancel button, do not remove the session
             // close the sliding item and hide the option buttons
@@ -114,7 +114,7 @@ export class SchedulePage {
           }
         },
         {
-          text: 'Remove',
+          text: 'Удалить',
           handler: () => {
             // they want to remove this session from their favorites
             this.user.removeFavorite(sessionData.name);

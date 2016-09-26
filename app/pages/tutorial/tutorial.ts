@@ -21,18 +21,18 @@ export class TutorialPage {
   constructor(public navCtrl: NavController, public menu: MenuController) {
     this.slides = [
       {
-        title: 'Welcome to <b>ICA</b>',
-        description: 'The <b>Ionic Conference App</b> is a practical preview of the Ionic Framework in action, and a demonstration of proper code use.',
+        title: 'Добро пожаловать на конференцию!',
+        description: 'Компания Sike.Software рада приветствовать Вас на нашей конференции',
         image: 'img/ica-slidebox-img-1.png',
       },
       {
-        title: 'What is Ionic?',
-        description: '<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.',
+        title: 'Для кого?',
+        description: 'Конференция проводится для студентов и всех желающих окунуться в удивительный мир разработки программного обеспечения',
         image: 'img/ica-slidebox-img-2.png',
       },
       {
-        title: 'What is Ionic Platform?',
-        description: 'The <b>Ionic Platform</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.',
+        title: 'О чем?',
+        description: 'Будут затронуты различные темы: от разработки под мобильные ОС до лучших практик в управлении проектами',
         image: 'img/ica-slidebox-img-3.png',
       }
     ];

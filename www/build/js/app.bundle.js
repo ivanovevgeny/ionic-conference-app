@@ -29,7 +29,10 @@ var PopoverPage = (function () {
 var AboutPage = (function () {
     function AboutPage(popoverCtrl) {
         this.popoverCtrl = popoverCtrl;
-        this.conferenceDate = '2047-05-17';
+        this.conferenceData = {
+            date: '15.11.2016 10:00',
+            place: 'МГТУ, аудитория 282'
+        };
     }
     AboutPage.prototype.presentPopover = function (event) {
         var popover = this.popoverCtrl.create(PopoverPage);
@@ -297,11 +300,11 @@ var SchedulePage = (function () {
         this.queryText = '';
         this.segment = 'all';
         this.excludeTracks = [];
-        this.shownSessions = [];
-        this.groups = [];
+        this.shownSessions = 0;
+        this.sessions = [];
     }
     SchedulePage.prototype.ionViewDidEnter = function () {
-        this.app.setTitle('Schedule');
+        this.app.setTitle('Расписание');
     };
     SchedulePage.prototype.ngAfterViewInit = function () {
         this.updateSchedule();
@@ -310,9 +313,9 @@ var SchedulePage = (function () {
         var _this = this;
         // Close any open sliding items when the schedule updates
         this.scheduleList && this.scheduleList.closeSlidingItems();
-        this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).then(function (data) {
+        this.confData.getTimeline(this.queryText, this.excludeTracks, this.segment).then(function (data) {
             _this.shownSessions = data.shownSessions;
-            _this.groups = data.groups;
+            _this.sessions = data.sessions;
         });
     };
     SchedulePage.prototype.presentFilter = function () {
@@ -335,14 +338,14 @@ var SchedulePage = (function () {
         if (this.user.hasFavorite(sessionData.name)) {
             // woops, they already favorited it! What shall we do!?
             // prompt them to remove it
-            this.removeFavorite(slidingItem, sessionData, 'Favorite already added');
+            this.removeFavorite(slidingItem, sessionData, 'Уже добавлено в избранное');
         }
         else {
             // remember this session as a user favorite
             this.user.addFavorite(sessionData.name);
             // create an alert instance
             var alert_1 = this.alertCtrl.create({
-                title: 'Favorite Added',
+                title: 'Добавлено в избранное',
                 buttons: [{
                         text: 'OK',
                         handler: function () {
@@ -359,10 +362,10 @@ var SchedulePage = (function () {
         var _this = this;
         var alert = this.alertCtrl.create({
             title: title,
-            message: 'Would you like to remove this session from your favorites?',
+            message: 'Удалить из избранного?',
             buttons: [
                 {
-                    text: 'Cancel',
+                    text: 'Отмена',
                     handler: function () {
                         // they clicked the cancel button, do not remove the session
                         // close the sliding item and hide the option buttons
@@ -370,7 +373,7 @@ var SchedulePage = (function () {
                     }
                 },
                 {
-                    text: 'Remove',
+                    text: 'Удалить',
                     handler: function () {
                         // they want to remove this session from their favorites
                         _this.user.removeFavorite(sessionData.name);
@@ -565,22 +568,15 @@ var SpeakerListPage = (function () {
     };
     SpeakerListPage.prototype.openContact = function (speaker) {
         var actionSheet = this.actionSheetCtrl.create({
-            title: 'Contact with ' + speaker.name,
+            title: 'Контакты',
             buttons: [
                 {
-                    text: "Email ( " + speaker.email + " )",
+                    text: "email: " + speaker.email,
                     icon: 'mail',
                     handler: function () {
                         window.open('mailto:' + speaker.email);
                     }
                 },
-                {
-                    text: "Call ( " + speaker.phone + " )",
-                    icon: 'call',
-                    handler: function () {
-                        window.open('tel:' + speaker.phone);
-                    }
-                }
             ]
         });
         actionSheet.present();
@@ -650,18 +646,18 @@ var TutorialPage = (function () {
         this.showSkip = true;
         this.slides = [
             {
-                title: 'Welcome to <b>ICA</b>',
-                description: 'The <b>Ionic Conference App</b> is a practical preview of the Ionic Framework in action, and a demonstration of proper code use.',
+                title: 'Добро пожаловать на конференцию!',
+                description: 'Компания Sike.Software рада приветствовать Вас на нашей конференции',
                 image: 'img/ica-slidebox-img-1.png',
             },
             {
-                title: 'What is Ionic?',
-                description: '<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.',
+                title: 'Для кого?',
+                description: 'Конференция проводится для студентов и всех желающих окунуться в удивительный мир разработки программного обеспечения',
                 image: 'img/ica-slidebox-img-2.png',
             },
             {
-                title: 'What is Ionic Platform?',
-                description: 'The <b>Ionic Platform</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.',
+                title: 'О чем?',
+                description: 'Будут затронуты различные темы: от разработки под мобильные ОС до лучших практик в управлении проектами',
                 image: 'img/ica-slidebox-img-3.png',
             }
         ];
@@ -733,14 +729,8 @@ var ConferenceData = (function () {
         var _this = this;
         data.tracks = [];
         // loop through each day in the schedule
-        data.schedule.forEach(function (day) {
-            // loop through each timeline group in the day
-            day.groups.forEach(function (group) {
-                // loop through each session in the timeline group
-                group.sessions.forEach(function (session) {
-                    _this.processSession(data, session);
-                });
-            });
+        data.sessions.forEach(function (session) {
+            _this.processSession(data, session);
         });
         return data;
     };
@@ -766,29 +756,27 @@ var ConferenceData = (function () {
             });
         }
     };
-    ConferenceData.prototype.getTimeline = function (dayIndex, queryText, excludeTracks, segment) {
+    ConferenceData.prototype.getTimeline = function (queryText, excludeTracks, segment) {
         var _this = this;
         if (queryText === void 0) { queryText = ''; }
         if (excludeTracks === void 0) { excludeTracks = []; }
         if (segment === void 0) { segment = 'all'; }
         return this.load().then(function (data) {
-            var day = data.schedule[dayIndex];
-            day.shownSessions = 0;
+            var filteredData = {
+                sessions: data.sessions,
+                shownSessions: 0
+            };
+            console.log(filteredData);
             queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
             var queryWords = queryText.split(' ').filter(function (w) { return !!w.trim().length; });
-            day.groups.forEach(function (group) {
-                group.hide = true;
-                group.sessions.forEach(function (session) {
-                    // check if this session should show or not
-                    _this.filterSession(session, queryWords, excludeTracks, segment);
-                    if (!session.hide) {
-                        // if this session is not hidden then this group should show
-                        group.hide = false;
-                        day.shownSessions++;
-                    }
-                });
+            filteredData.sessions.forEach(function (session) {
+                // check if this session should show or not
+                _this.filterSession(session, queryWords, excludeTracks, segment);
+                if (!session.hide) {
+                    filteredData.shownSessions++;
+                }
             });
-            return day;
+            return filteredData;
         });
     };
     ConferenceData.prototype.filterSession = function (session, queryWords, excludeTracks, segment) {
@@ -99416,18 +99404,18 @@ var ConferenceApp = (function () {
         // the left menu only works after login
         // the login page disables the left menu
         this.appPages = [
-            { title: 'Schedule', component: tabs_1.TabsPage, icon: 'calendar' },
-            { title: 'Speakers', component: tabs_1.TabsPage, index: 1, icon: 'contacts' },
-            { title: 'Map', component: tabs_1.TabsPage, index: 2, icon: 'map' },
-            { title: 'About', component: tabs_1.TabsPage, index: 3, icon: 'information-circle' },
+            { title: 'Расписание', component: tabs_1.TabsPage, icon: 'calendar' },
+            { title: 'Спикеры', component: tabs_1.TabsPage, index: 1, icon: 'contacts' },
+            { title: 'Карта', component: tabs_1.TabsPage, index: 2, icon: 'map' },
+            { title: 'Информация', component: tabs_1.TabsPage, index: 3, icon: 'information-circle' },
         ];
         this.loggedInPages = [
-            { title: 'Account', component: account_1.AccountPage, icon: 'person' },
-            { title: 'Logout', component: tabs_1.TabsPage, icon: 'log-out' }
+            { title: 'Аккаунт', component: account_1.AccountPage, icon: 'person' },
+            { title: 'Выйти', component: tabs_1.TabsPage, icon: 'log-out' }
         ];
         this.loggedOutPages = [
-            { title: 'Login', component: login_1.LoginPage, icon: 'log-in' },
-            { title: 'Signup', component: signup_1.SignupPage, icon: 'person-add' }
+            { title: 'Вход', component: login_1.LoginPage, icon: 'log-in' },
+            { title: 'Регистрация', component: signup_1.SignupPage, icon: 'person-add' }
         ];
         this.rootPage = tutorial_1.TutorialPage;
         // Call any initial plugins when ready
@@ -99497,7 +99485,9 @@ var ConferenceApp = (function () {
 // Place the tabs on the bottom for all platforms
 // See the theming docs for the default values:
 // http://ionicframework.com/docs/v2/theming/platform-specific-styles/
-ionic_angular_1.ionicBootstrap(ConferenceApp, [conference_data_1.ConferenceData, user_data_1.UserData], {});
+ionic_angular_1.ionicBootstrap(ConferenceApp, [conference_data_1.ConferenceData, user_data_1.UserData], {
+    backButtonText: 'Назад'
+});
 },{"./pages/account/account":2,"./pages/login/login":3,"./pages/signup/signup":8,"./pages/tabs/tabs":11,"./pages/tutorial/tutorial":12,"./providers/conference-data":13,"./providers/user-data":14,"@angular/core":162,"ionic-angular":476,"ionic-native":503}],629:[function(require,module,exports){
 
 },{}]},{},[628,629])

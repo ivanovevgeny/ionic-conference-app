@@ -38,14 +38,8 @@ export class ConferenceData {
     data.tracks = [];
 
     // loop through each day in the schedule
-    data.schedule.forEach(day => {
-      // loop through each timeline group in the day
-      day.groups.forEach(group => {
-        // loop through each session in the timeline group
-        group.sessions.forEach(session => {
-          this.processSession(data, session);
-        });
-      });
+    data.sessions.forEach(session => {
+      this.processSession(data, session);
     });
 
     return data;
@@ -75,31 +69,27 @@ export class ConferenceData {
     }
   }
 
-  getTimeline(dayIndex, queryText = '', excludeTracks = [], segment = 'all') {
+  getTimeline(queryText = '', excludeTracks = [], segment = 'all') {
     return this.load().then(data => {
-      let day = data.schedule[dayIndex];
-      day.shownSessions = 0;
+      let filteredData = {
+        sessions: data.sessions,
+        shownSessions: 0
+      };
+      console.log(filteredData);
 
       queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
       let queryWords = queryText.split(' ').filter(w => !!w.trim().length);
 
-      day.groups.forEach(group => {
-        group.hide = true;
-
-        group.sessions.forEach(session => {
+      filteredData.sessions.forEach(session => {
           // check if this session should show or not
           this.filterSession(session, queryWords, excludeTracks, segment);
 
           if (!session.hide) {
-            // if this session is not hidden then this group should show
-            group.hide = false;
-            day.shownSessions++;
+            filteredData.shownSessions++;
           }
-        });
-
       });
 
-      return day;
+      return filteredData;
     });
   }
 

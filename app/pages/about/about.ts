@@ -27,9 +27,15 @@ class PopoverPage {
   templateUrl: 'build/pages/about/about.html'
 })
 export class AboutPage {
-  conferenceDate = '2047-05-17';
+  conferenceData: any;
 
-  constructor(public popoverCtrl: PopoverController) { }
+  constructor(public popoverCtrl: PopoverController) {
+    this.conferenceData = {
+      date: '15.11.2016 10:00',
+      place: 'МГТУ, аудитория 282'
+    };
+
+  }
 
   presentPopover(event) {
     let popover = this.popoverCtrl.create(PopoverPage);

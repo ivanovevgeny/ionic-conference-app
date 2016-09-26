@@ -71,22 +71,22 @@ export class SpeakerListPage {
 
   openContact(speaker) {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Contact with ' + speaker.name,
+      title: 'Контакты',
       buttons: [
         {
-          text: `Email ( ${speaker.email} )`,
+          text: `email: ${speaker.email}`,
           icon: 'mail',
           handler: () => {
             window.open('mailto:' + speaker.email);
           }
         },
-        {
-          text: `Call ( ${speaker.phone} )`,
-          icon: 'call',
-          handler: () => {
-            window.open('tel:' + speaker.phone);
-          }
-        }
+        // {
+        //   text: `Call ( ${speaker.phone} )`,
+        //   icon: 'call',
+        //   handler: () => {
+        //     window.open('tel:' + speaker.phone);
+        //   }
+        // }
       ]
     });
 
