@@ -1,6 +1,6 @@
 {
-  "name": "Sike.Software",
-  "short_name": "Sike",
+  "name": "Sike Conference App",
+  "short_name": "Sike Conference",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
