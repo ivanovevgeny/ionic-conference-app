@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 
-import { PopoverController, ViewController } from 'ionic-angular';
+import { PopoverController, ViewController, NavController } from 'ionic-angular';
+
+import { MapPage } from '../map/map';
 
 
 @Component({
-  template: `
+    template: `
     <ion-list>
       <button ion-item (click)="close()">Learn Ionic</button>
       <button ion-item (click)="close()">Documentation</button>
@@ -15,30 +17,36 @@ import { PopoverController, ViewController } from 'ionic-angular';
 })
 class PopoverPage {
 
-  constructor(public viewCtrl: ViewController) { }
+    constructor(
+        public viewCtrl: ViewController) { }
 
-  close() {
-    this.viewCtrl.dismiss();
-  }
+    close() {
+        this.viewCtrl.dismiss();
+    }
 }
 
 
 @Component({
-  templateUrl: 'build/pages/about/about.html'
+    templateUrl: 'build/pages/about/about.html'
 })
 export class AboutPage {
-  conferenceData: any;
+    conferenceData: any;
 
-  constructor(public popoverCtrl: PopoverController) {
-    this.conferenceData = {
-      date: '15.11.2016 10:00',
-      place: 'МГТУ, аудитория 282'
-    };
+    constructor(
+        public popoverCtrl: PopoverController,
+        public navCtrl: NavController) {
+        this.conferenceData = {
+            place: 'МГТУ, аудитория 282',
+            date: '15.11.2016 10:00'
+        };
+    }
 
-  }
+    openMap() {
+        this.navCtrl.push(MapPage);
+    }
 
-  presentPopover(event) {
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({ ev: event });
-  }
+    presentPopover(event) {
+        let popover = this.popoverCtrl.create(PopoverPage);
+        popover.present({ ev: event });
+    }
 }

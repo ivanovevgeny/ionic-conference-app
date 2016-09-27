@@ -11134,7 +11134,19 @@ body {
 .login-page .logo {
   padding: 20px 0;
   min-height: 200px;
-  text-align: center; }
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center; }
 
 .login-page .logo img {
   max-width: 150px; }
@@ -11152,50 +11164,22 @@ body {
 .map-page #map.show-map {
   opacity: 1; }
 
-.schedule-page ion-item-sliding[track=ionic] ion-label {
+.schedule-page ion-item-sliding[track=development] ion-label {
   border-left: 2px solid #387ef5;
   padding-left: 10px; }
 
-.schedule-page ion-item-sliding[track=angular] ion-label {
-  border-left: 2px solid #AC282B;
-  padding-left: 10px; }
-
-.schedule-page ion-item-sliding[track=communication] ion-label {
-  border-left: 2px solid #8E8D93;
-  padding-left: 10px; }
-
-.schedule-page ion-item-sliding[track=tooling] ion-label {
+.schedule-page ion-item-sliding[track=managment] ion-label {
   border-left: 2px solid #FE4C52;
-  padding-left: 10px; }
-
-.schedule-page ion-item-sliding[track=services] ion-label {
-  border-left: 2px solid #FD8B2D;
-  padding-left: 10px; }
-
-.schedule-page ion-item-sliding[track=design] ion-label {
-  border-left: 2px solid #FED035;
-  padding-left: 10px; }
-
-.schedule-page ion-item-sliding[track=workshop] ion-label {
-  border-left: 2px solid #69BB7B;
   padding-left: 10px; }
 
 .schedule-page ion-item-sliding[track=food] ion-label {
   border-left: 2px solid #3BC7C4;
   padding-left: 10px; }
 
-.schedule-page ion-item-sliding[track=documentation] ion-label {
-  border-left: 2px solid #B16BE3;
-  padding-left: 10px; }
-
-.schedule-page ion-item-sliding[track=navigation] ion-label {
-  border-left: 2px solid #6600CC;
-  padding-left: 10px; }
-
 .reset-filters {
   color: #f53d3d; }
 
-ion-item[track=ionic] .dot {
+ion-item[track=development] .dot {
   height: 10px;
   display: inline-block;
   width: 10px;
@@ -11203,51 +11187,11 @@ ion-item[track=ionic] .dot {
   border-radius: 5px;
   margin-right: 10px; }
 
-ion-item[track=angular] .dot {
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  background-color: #AC282B;
-  border-radius: 5px;
-  margin-right: 10px; }
-
-ion-item[track=communication] .dot {
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  background-color: #8E8D93;
-  border-radius: 5px;
-  margin-right: 10px; }
-
-ion-item[track=tooling] .dot {
+ion-item[track=managment] .dot {
   height: 10px;
   display: inline-block;
   width: 10px;
   background-color: #FE4C52;
-  border-radius: 5px;
-  margin-right: 10px; }
-
-ion-item[track=services] .dot {
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  background-color: #FD8B2D;
-  border-radius: 5px;
-  margin-right: 10px; }
-
-ion-item[track=design] .dot {
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  background-color: #FED035;
-  border-radius: 5px;
-  margin-right: 10px; }
-
-ion-item[track=workshop] .dot {
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  background-color: #69BB7B;
   border-radius: 5px;
   margin-right: 10px; }
 
@@ -11256,22 +11200,6 @@ ion-item[track=food] .dot {
   display: inline-block;
   width: 10px;
   background-color: #3BC7C4;
-  border-radius: 5px;
-  margin-right: 10px; }
-
-ion-item[track=documentation] .dot {
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  background-color: #B16BE3;
-  border-radius: 5px;
-  margin-right: 10px; }
-
-ion-item[track=navigation] .dot {
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  background-color: #6600CC;
   border-radius: 5px;
   margin-right: 10px; }
 

@@ -1,38 +1,37 @@
 <ion-header>
-  <ion-navbar>
-    <button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Информация</ion-title>
-    <!-- <ion-buttons end>
+    <ion-navbar>
+        <button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Информация</ion-title>
+        <!-- <ion-buttons end>
       <button (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons> -->
-  </ion-navbar>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <div class="about-header">
-    <img src="img/logo.png">
-  </div>
-  <div padding class="about-info">
-    <h4>О конференции</h4>
+    <div class="about-header">
+        <img src="img/logo.png">
+    </div>
+    <div padding class="about-info">
+        <h4>О конференции</h4>
 
-    <ion-list no-lines>
-      <ion-item>
-        <ion-icon name="calendar" item-left></ion-icon>
-        Дата: <span class="conference-data" accent>{{conferenceData.date}}</span>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="pin" item-left></ion-icon>
-        Место: <span class="conference-data" accent>{{conferenceData.place}}</span>
-      </ion-item>
-    </ion-list>
+        <ion-list no-lines>
+            <ion-item>
+                <ion-icon name="calendar" item-left></ion-icon>
+                Дата: <span class="conference-data" accent>{{conferenceData.date}}</span>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="pin" item-left></ion-icon>
+                Место: <span accent class="conference-data">{{conferenceData.place}}</span>
+            </ion-item>
+        </ion-list>
 
-    <p>
-      Данная конференция о технологиях разработки мобильных приложений, об управлении проектами и принципах работы с заказчиками.
-      Предназначена в первую очередь для студентов, которые только начинают свой путь в разработке ПО, но также будет полезна и уже опытным разработчикам, менеджерам проектов и системным аналитикам.
-    </p>
-  </div>
+        <p>
+            Данная конференция о технологиях разработки мобильных приложений, об управлении проектами и принципах работы с заказчиками. Предназначена в первую очередь для студентов, которые только начинают свой путь в разработке ПО, но также будет полезна и опытным разработчикам, менеджерам проектов и системным аналитикам.
+        </p>
+    </div>
 </ion-content>

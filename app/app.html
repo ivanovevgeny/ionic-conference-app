@@ -13,8 +13,8 @@
         Навигация
       </ion-list-header>
       <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
-        <ion-icon item-left [name]="p.icon"></ion-icon>
-        {{p.title}}
+        <ion-icon accent item-left [name]="p.icon"></ion-icon>
+        <span accent>{{p.title}}</span>
       </button>
     </ion-list>
 
@@ -22,9 +22,9 @@
       <ion-list-header>
         Аккаунт
       </ion-list-header>
-      <button ion-item menuClose *ngFor="let p of loggedOutPages" (click)="openPage(p)">
-        <ion-icon item-left [name]="p.icon"></ion-icon>
-        {{p.title}}
+      <button ion-item menuClose *ngFor="let p of loggedOutPages" (click)="openPage(p)" accent>
+        <ion-icon accent item-left [name]="p.icon"></ion-icon>
+        <span accent>{{p.title}}</span>
       </button>
     </ion-list>
   </ion-content>

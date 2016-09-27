@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
+var map_1 = require('../map/map');
 var PopoverPage = (function () {
     function PopoverPage(viewCtrl) {
         this.viewCtrl = viewCtrl;
@@ -27,13 +28,17 @@ var PopoverPage = (function () {
     return PopoverPage;
 }());
 var AboutPage = (function () {
-    function AboutPage(popoverCtrl) {
+    function AboutPage(popoverCtrl, navCtrl) {
         this.popoverCtrl = popoverCtrl;
+        this.navCtrl = navCtrl;
         this.conferenceData = {
-            date: '15.11.2016 10:00',
-            place: 'МГТУ, аудитория 282'
+            place: 'МГТУ, аудитория 282',
+            date: '15.11.2016 10:00'
         };
     }
+    AboutPage.prototype.openMap = function () {
+        this.navCtrl.push(map_1.MapPage);
+    };
     AboutPage.prototype.presentPopover = function (event) {
         var popover = this.popoverCtrl.create(PopoverPage);
         popover.present({ ev: event });
@@ -42,12 +47,12 @@ var AboutPage = (function () {
         core_1.Component({
             templateUrl: 'build/pages/about/about.html'
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.PopoverController])
+        __metadata('design:paramtypes', [ionic_angular_1.PopoverController, ionic_angular_1.NavController])
     ], AboutPage);
     return AboutPage;
 }());
 exports.AboutPage = AboutPage;
-},{"@angular/core":162,"ionic-angular":476}],2:[function(require,module,exports){
+},{"../map/map":4,"@angular/core":162,"ionic-angular":476}],2:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

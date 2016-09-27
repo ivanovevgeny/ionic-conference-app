@@ -7,7 +7,7 @@
       "speakerNames": ["Илья Необутов"],
       "timeStart": "10:00",
       "timeEnd": "10:40",
-      "tracks": ["Разработка"]
+      "tracks": ["Development"]
     },
     {
       "name": "Найти и удержать: первые шаги в любом проекте",
@@ -15,7 +15,7 @@
       "speakerNames": ["Татьяна Калугина"],
       "timeStart": "10:40",
       "timeEnd": "11:20",
-      "tracks": ["Управление проектами"]
+      "tracks": ["Managment"]
     },
     {
       "name": "Раскрасим аналоговый мир (ДР)",
@@ -23,7 +23,7 @@
       "speakerNames": ["Андрей Свдовщиков"],
       "timeStart": "11:20",
       "timeEnd": "12:00",
-      "tracks": ["Разработка"]
+      "tracks": ["Development"]
     },
     {
       "name": "Учимся договариваться",
@@ -31,14 +31,14 @@
       "speakerNames": ["Денис Лаптев"],
       "timeStart": "12:00",
       "timeEnd": "12:40",
-      "tracks": ["Управление проектами"]
+      "tracks": ["Managment"]
     },
     {
       "name": "Кофе-брейк",
       "description": "пьем чай, кофе с печеньками",
       "timeStart": "12:40",
       "timeEnd": "13:00",
-      "tracks": ["Еда"]
+      "tracks": ["Food"]
     },
     {
       "name": "Progressive Web Apps",
@@ -46,7 +46,7 @@
       "speakerNames": ["Евгений Иванов"],
       "timeStart": "13:00",
       "timeEnd": "13:40",
-      "tracks": ["Разработка"]
+      "tracks": ["Development"]
     },
     {
       "name": "Менежмент проектов: требования и коммуникации",
@@ -54,7 +54,7 @@
       "speakerNames": ["Валентина Орешкова"],
       "timeStart": "13:40",
       "timeEnd": "14:20",
-      "tracks": ["Управление проектами"]
+      "tracks": ["Managment"]
     },
     {
       "name": "Личный старт. Как перестать мечтать и начать разрабатывать",
@@ -62,7 +62,7 @@
       "speakerNames": ["Евгений Румянцев"],
       "timeStart": "14:20",
       "timeEnd": "15:00",
-      "tracks": ["Разработка"]
+      "tracks": ["Development"]
     },
     {
       "name": "Кадровый IT-апокалипсис: всё плохо?",
@@ -70,14 +70,14 @@
       "speakerNames": ["Ярослав Осипов"],
       "timeStart": "15:00",
       "timeEnd": "16:00",
-      "tracks": ["Управление проектами"]
+      "tracks": ["Managment"]
     },
     {
       "name": "Подведение итогов и круглый стол. Закрытие конференции.",
       "description": "",
       "timeStart": "16:00",
       "timeEnd": "17:00",
-      "tracks": ["Управление проектами"]
+      "tracks": ["Managment"]
     }
   ],
 
