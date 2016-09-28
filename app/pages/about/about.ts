@@ -37,7 +37,7 @@ export class AboutPage {
         public navCtrl: NavController) {
         this.conferenceData = {
             place: 'МГТУ, аудитория 282',
-            date: '15.11.2016 10:00'
+            date: '09.11.2016 10:00'
         };
     }
 
